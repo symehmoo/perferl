@@ -1,0 +1,30 @@
+PERFERL README
+
+Prerequisites:
+* Erlang/OTP is installed with the default libraries
+* Environment variable ERL_HOME is set to the directory where erlang is installed
+
+Procedure:
+
+Modify the perferl_start.sh script and update the paths and hostname as required.(yet to be parameterized)
+Run the script perferl_start.sh - It starts yaws web server in embedded mode on the specified port.
+
+By default it is configured to run example_tests/web_requests.perferl which just hits a couple of websites.
+
+open the url : http://<host>:<port>/perferl/perferl/home
+
+enter the number of users to simulate and the ramp up time in seconds and hit start to start the tests.
+
+the results are written to an mnesia database.
+
+run the script perferl_stop.sh to kill perferl.
+
+While perferl is started, erlang shells can be started in perferl/src/ebin directory and refresh the page.
+Perferl will pick up all the available nodes and distribute its load evenly.
+
+
+Notes:
+*The erlyweb binaries and yaws binaries are bundled along with the code to ease setting it up.
+*The code might have references to hardcoded paths as it is still work in progress.
+
+Any questions? - mailto:reachsrk@gmail.com

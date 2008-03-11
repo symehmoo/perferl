@@ -1,0 +1,30 @@
+<%~
+%% @title erlyweb_view.et
+%% @doc This is a generic view template for making simple CRUD
+%%   pages with ErlyWeb. It's intended for demonstration purposes,
+%%   but not for production use.
+%%
+%% @license for license information see LICENSE.txt
+
+-author("Yariv Sadan (yarivsblog@gmail.com, http://yarivsblog.com)").
+-import(erlyweb_html, [a/2, table/1, table/2, form/3]).
+%>
+
+<%@ home({Data}) %>
+<br/>
+<div align="center">Currently distributing across <% Data %> nodes</div>
+<br/>
+
+<%@ status({FinishedCount, ProcessCount}) %>
+<span id="finishedCount"><% FinishedCount %></span> of <span id="processCount"><% ProcessCount %></span> processes completed.
+
+<%@ snapshot({Data}) %>
+<% table(Data, ["URL", "Avg. Time(ms)", "Min. Time(ms)", "Max. Time(ms)"]) %>
+
+<%@ startit({Data}) %>
+<% Data %>
+
+<%@ finished({Data1, Data2}) %>
+<!--<img src="<% Data1%>" alt="chart1"/>-->
+<img src="<% Data2%>" alt="chart1"/>
+

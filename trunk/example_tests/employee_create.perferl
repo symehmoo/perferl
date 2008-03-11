@@ -1,0 +1,3 @@
+{"param-get1", get, "http://localhost:7080/rr-struts-crud2/employeeProcess.do?dispatch=getEmployees"}.
+{"param-get2", get, "http://localhost:7080/rr-struts-crud2/employeeSetUp.do?dispatch=setUpForInsertOrUpdate"}.
+{"param-post1", post, "http://localhost:7080/rr-struts-crud2/employeeProcess.do","firstName=karthik&lastName=ramachandra&age=25&department.departmentId=200&dispatch=insertOrUpdate&employeeId="}.
