@@ -1,0 +1,35 @@
+<html>
+<head>
+<link rel="stylesheet" href="/style.css">
+<title>Perferl</title>
+    <script src="/media/sda6/DevTools/ruby/WebMind/public/javascripts/prototype.js" type="text/javascript"></script>
+    <script src="/media/sda6/DevTools/ruby/WebMind/public/javascripts/effects.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+function myCallBackOnFinish(obj){
+  alert("the Element's id the effect was applied to is :" + obj.element.id);
+}
+function myCallBackOnStart(obj){
+  alert("the Element object the effect will be applied to is :" + obj.element);
+}
+
+function call() {
+	new Effect.Highlight("content", 
+		{ 
+			startcolor:'#ffffff',
+			endcolor:'#ffcccc',
+			duration: 1
+		}
+	);
+}
+</script>
+</head>
+<body>
+
+<a href="#" onclick="call()">click me</a>
+<div id="content">
+Welcome to 'Perferl', your new <a href="http://erlyweb.org">ErlyWeb</a> app.<br><br>
+Let the <a href="http://erlang.org">Erlang</a> hacking begin!
+</div>
+</body>
+</html>

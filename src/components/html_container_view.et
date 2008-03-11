@@ -1,0 +1,35 @@
+<%@ index(Data) %>
+<html>
+<head>
+    <title>Perferl</title>
+    <link rel="stylesheet" href="/style.css" type="text/css"/>
+    <script src="/js/old/prototype.js" type="text/javascript"></script>
+    <script src="/js/old/effects.js" type="text/javascript"></script>
+    <script src="/js/erlymeter.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/js/counter.js"></script>
+</head>
+<body>
+<div id="status" align="center" width="50%"></div>
+<div id="current_state"></div>
+<span id='cntdwn' style='color:navy;'></span>
+
+<div id="commands">
+    <form action="html_container_controller.erl" id="parametersForm">
+        Processes:<input type="text" id="Pc" name="Pc" size="5"/> Ramp Up Time(secs):<input type="text" id="Rt" name="Rt" size="5"/>
+        <span id="start" onclick="start()" style="cursor:pointer;text-decoration:underline;">Start</span>
+    </form>
+</div>
+<h1>Results</h1>
+
+<div id="chart"></div>
+
+<div id="content" style="width:80%;">
+    <% Data %>
+    <br/>
+
+    <div width="80%" align="right">
+        powered by <a href="http://erlyweb.org">ErlyWeb</a> / <a href="http://yaws.hyber.org">Yaws</a>
+    </div>
+</div>
+</body>
+</html>

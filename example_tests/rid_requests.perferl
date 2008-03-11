@@ -1,0 +1,6 @@
+{"param-get", get, "http://localhost:8080/ViewProfileSearch.action"}.
+{"param-post", post, "http://localhost:8080/ProfileSearch.action", "criteria.requestedPage.size=10"}.
+{"param-post2", post, "http://localhost:8080/ProfileSearch.action", "criteria.lastName=test&criteria.requestedPage.size=10"}.
+{"param-post3", post, "http://localhost:8080/ProfileSearch.action", "criteria.lastName=tom*&criteria.requestedPage.size=10"}.
+{"param-post4", post, "http://localhost:8080/rid/A-1000-2033", "navigatable=true"}.
+{"param-post5", post, "http://localhost:8080/rid/A-1000-2038", "navigatable=true"}.
