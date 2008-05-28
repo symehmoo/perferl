@@ -1,3 +1,7 @@
 {"param-get1", get, "http://localhost:7080/rr-struts-crud2/employeeProcess.do?dispatch=getEmployees"}.
 {"param-get2", get, "http://localhost:7080/rr-struts-crud2/employeeSetUp.do?dispatch=setUpForInsertOrUpdate"}.
 {"param-post1", post, "http://localhost:7080/rr-struts-crud2/employeeProcess.do","firstName=karthik&lastName=ramachandra&age=25&department.departmentId=200&dispatch=insertOrUpdate&employeeId="}.
+{"param-get3", get, "http://localhost:7080/rr-struts-crud2/employeeProcess.do?dispatch=getEmployees&again=true"}.
+{"param-get4", get, "http://localhost:7080/rr-struts-crud2/employeeSetUp.do?dispatch=setUpForInsertOrUpdate&attempt=3"}.
+{"param-get5", get, "http://localhost:7080/rr-struts-crud2/employeeProcess.do?dispatch=getEmployees&attempt=5"}.
+{"param-get6", get, "http://localhost:7080/rr-struts-crud2/employeeSetUp.do?dispatch=setUpForInsertOrUpdate&attempt=6"}.

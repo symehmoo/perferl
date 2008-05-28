@@ -56,8 +56,8 @@ home(_A, Model) ->
 finished(_A) ->
     io:format("Cleaning up~n"),
     {ok, Averages} = analyser:averages(whereis(observer)),
-    Chart1 = "http://chart.apis.google.com/chart?cht=bvs&chs=500x200&chco=ff0000&chd=t:" ++ lists:nth(1,Averages) ++ "," ++lists:nth(2,Averages) ++ "," ++lists:nth(3,Averages),
-    log:info("Returning chart ~p:", [Chart1]),
-    Chart2 = chart:generate(),
+%    Chart1 = "http://chart.apis.google.com/chart?cht=bvs&chs=500x200&chco=ff0000&chd=t:" ++ lists:nth(1,Averages) ++ "," ++lists:nth(2,Averages) ++ "," ++lists:nth(3,Averages),
+%    log:info("Returning chart ~p:", [Chart1]),
+%    Chart2 = chart:generate(),
     perferl:clean(),
-	{data, {Chart1, Chart2}}.
+	{data, {"dfdsf", "sdfdsf"}}.

@@ -21,40 +21,34 @@ loop(ProcessCount, RampUpTime) ->
 	    {From, {initialize, Pc, Rt}} ->
             register(observer, analyser:start()),
             register(collector, data_collector:start(Pc)),
-	        publisher:do_this_once(),
-	        publisher:start(),
             From ! {self(), ok},
             loop(Pc, Rt);
 	    {From, start_tests} ->
-            data_collector:gatherRuntimeData(whereis(collector)),
-	        ok = timer:sleep(2000),
-            test_runner:run(ProcessCount, RampUpTime, builder:buildWebRequests()),
+%TODO:remove omio
+            test_runner:run(ProcessCount, RampUpTime, builder:buildOmioRequests()),
             From ! {self(), ok},
             loop(ProcessCount, RampUpTime);
-	    {From, kill} ->
-	        From ! {self(), ok};
-        {From, cleanup} ->
+        {From, start_teardown} ->
+            ok = timer:sleep(2000),
             analyser:publish_results(whereis(observer)),
             collector ! {self(), kill},
             analyser:kill(whereis(observer)),
-            From ! {self(), ok},
             inets:stop(),
-            log:info("Cleanup done", []),
-            loop(ProcessCount, RampUpTime)
+            log:info("Cleanup done", [])
 %		{'EXIT', _Analyser, Reason} ->
 %			io:format("completed with Reason: ~p~n", [Reason])
 %	after 100000 ->
 %		io:format("Main Timeout")
 	end.
 
-doIt(Pc, Rt) ->
-    perferl:start("initialised"),
-	ok = timer:sleep(1000),
+run(Pc, Rt) ->
+    perferl:start("Starting tests...."),
+  	ok = timer:sleep(1000),
     perferl:initialize(whereis(theprogram), Pc, Rt * 1000),
     perferl:startTheTests(whereis(theprogram)).
 
 clean() ->
-     chart:generate(),
+%     chart:generate(),
      perferl:cleanup(whereis(theprogram)),
      perferl:killme(whereis(theprogram)).
 

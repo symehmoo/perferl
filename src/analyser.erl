@@ -22,10 +22,10 @@ loop(Stats, Dict) ->
 	    {From, capture_snapshot} ->
             From ! {self(), ok},
 	        {FinishedCount, ProcessCount, ActiveUsers} = data_collector:currentStatus(whereis(collector)),
-            publisher:publish_runtime(erlang:localtime(),Dict, ActiveUsers),
+%            publisher:publish_runtime(erlang:localtime(),Dict, ActiveUsers),
             loop(Stats, Dict);
 	    {From, publish} ->
-            publisher:publish(Dict),
+%            publisher:publish(Dict),
             From ! {self(), ok},
             loop(Stats, Dict);
 	    {From, display} ->
