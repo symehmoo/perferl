@@ -1,6 +1,4 @@
 {"param-get", get, "http://images.google.co.in/imghp?ie=UTF-8&oe=UTF-8&hl=en&tab=wi&q="}.
-{"param-post", post, "http://localhost:3000/erl/say", "name=srk"}.
 {"simple-get", get, "http://www.erlang.org"}.
 {"simple-get2", get, "http://karthiksr.blogspot.com"}.
-{"simple-get-fail", get, "http://localhost:8080/hello"}.
 {"redirect-get", get, "http://www.google.com"}.
