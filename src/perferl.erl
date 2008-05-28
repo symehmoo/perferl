@@ -1,17 +1,17 @@
 -module(perferl).
 -compile(export_all).
 
-startTheTests(Pid) -> rpc(Pid, start_tests).
+startTheTests(Pid, FileName) -> rpc(Pid, {start_tests, FileName}).
 initialize(Pid, ProcessCount, RampUpTime) -> rpc(Pid, {initialize, ProcessCount, RampUpTime}).
 cleanup(Pid) -> rpc(Pid, cleanup).
 killme(Pid) -> rpc(Pid, kill).
 
 start(Message) ->
-	io:format("~p~n", [Message]),
-    spawn(fun start/0).
+	log:info("~p~n", [Message]),
+  spawn(fun start/0).
 
 start() ->
-    inets:start(),
+  inets:start(),
 	process_flag(trap_exit, true),
 	register(theprogram, self()),
 	loop(0, 0).
@@ -23,9 +23,8 @@ loop(ProcessCount, RampUpTime) ->
             register(collector, data_collector:start(Pc)),
             From ! {self(), ok},
             loop(Pc, Rt);
-	    {From, start_tests} ->
-%TODO:remove omio
-            test_runner:run(ProcessCount, RampUpTime, builder:buildOmioRequests()),
+	    {From, {start_tests, FileName}} ->
+            test_runner:run(ProcessCount, RampUpTime, builder:buildRequestsFrom(FileName)),
             From ! {self(), ok},
             loop(ProcessCount, RampUpTime);
         {From, start_teardown} ->
@@ -34,18 +33,18 @@ loop(ProcessCount, RampUpTime) ->
             collector ! {self(), kill},
             analyser:kill(whereis(observer)),
             inets:stop(),
-            log:info("Cleanup done", [])
+            log:info("Test run completed.~n", [])
 %		{'EXIT', _Analyser, Reason} ->
 %			io:format("completed with Reason: ~p~n", [Reason])
 %	after 100000 ->
 %		io:format("Main Timeout")
 	end.
 
-run(Pc, Rt) ->
+run(Pc, Rt, FileName) ->
     perferl:start("Starting tests...."),
   	ok = timer:sleep(1000),
     perferl:initialize(whereis(theprogram), Pc, Rt * 1000),
-    perferl:startTheTests(whereis(theprogram)).
+    perferl:startTheTests(whereis(theprogram), FileName).
 
 clean() ->
 %     chart:generate(),

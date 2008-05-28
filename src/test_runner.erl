@@ -9,7 +9,7 @@ startTests(Requests, Pids, Interval) ->
 	[Pid|T] = Pids,
 	Pid ! {Requests},
 	whereis(collector) ! {self(), one_more},
-	log:info("Sent to ~p.~n", [Pid]),
+	log:info("Started on PID: ~p.~n", [Pid]),
 	ok = timer:sleep(Interval),
 	startTests(Requests, T, Interval).
 
