@@ -1,7 +1,7 @@
 PERFERL README
 
 Prerequisites:
-* Erlang/OTP is installed with the default libraries
+* Erlang/OTP is installed with the default libraries and "erl" is in the path
 
 Procedure:
 
@@ -47,4 +47,4 @@ THis means: [[<url1>, <avg time taken>, <min>, <max>],
 Notes:
 *The code might have references to hardcoded paths as it is still work in progress.
 
-Any questions? - mailto:reachsrk@gmail.com
+Any questions/bugs/feature requests? - mailto:reachsrk@gmail.com
