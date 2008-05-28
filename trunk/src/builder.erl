@@ -52,9 +52,12 @@ buildRIDRequests() ->
 buildSampleRequests() ->
 	buildRequestsFrom("employee_create.perferl").
 
+buildOmioRequests() ->
+	buildRequestsFrom("deals.perferl").
+
 buildRequestsFrom(FileName) ->
 	B = builder:start(),
-	Name = string:concat("/home/srk/dev/erlang/deployment/perferl/example_tests/", FileName),
+	Name = string:concat("/home/srk/dev/erlang/perferl/example_tests/", FileName),
 	log:info("consulting: ~p",[Name]),
 	{ok, Terms} = file:consult(Name),
 	lists:foreach(fun(A) -> builder:add(B, A)end , Terms),

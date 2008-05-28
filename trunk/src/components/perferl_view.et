@@ -26,5 +26,5 @@
 
 <%@ finished({Data1, Data2}) %>
 <!--<img src="<% Data1%>" alt="chart1"/>-->
-<img src="<% Data2%>" alt="chart1"/>
+<!--<img src="<% Data2%>" alt="chart1"/>-->
 
