@@ -1,0 +1,5 @@
+{"home", get, "http://localhost:3000/"}.
+{"deals", get, "http://localhost:3000/deals"}.
+{"mobile-info", get, "http://localhost:3000/phones"}.
+{"phone", get, "http://localhost:3000/phones/nokia/n95"}.
+{"compare", get, "http://localhost:3000/phones/compare"}.

@@ -2,29 +2,49 @@ PERFERL README
 
 Prerequisites:
 * Erlang/OTP is installed with the default libraries
-* Environment variable ERL_HOME is set to the directory where erlang is installed
 
 Procedure:
 
-Modify the perferl_start.sh script and update the paths and hostname as required.(yet to be parameterized)
-Run the script perferl_start.sh - It starts yaws web server in embedded mode on the specified port.
+Writing tests:
 
-By default it is configured to run example_tests/web_requests.perferl which just hits a couple of websites.
+Look at the example tests given in the tests directory and use the same format for writing new tests.
+The sructure is :
+{"simple-get", get, "http://www.erlang.org"}.
+{"simple-post", post, "http://localhost:7080/employeeProcess.do","firstName=karthik&lastName=ramachandra&age=25"}.
 
-open the url : http://<host>:<port>/perferl/perferl/home
+The first parameter is just a unique name for that request. Can be any string.Should be unique for each row
+The second parameter is either the atom "get" or "post". Request method
+THe third parameter is the url.
+The optional fourth parameter is used only in the case of "post" requests to contain the request body
 
-enter the number of users to simulate and the ramp up time in seconds and hit start to start the tests.
 
-the results are written to an mnesia database.
+Running tests:
 
-run the script perferl_stop.sh to kill perferl.
+Modify the run.sh script and update name of the test case (.perferl file). Perferl assumes that that file resides in
+the "tests" directory.
+Run the script run.sh with the process count and ramp up time as arguments.
 
-While perferl is started, erlang shells can be started in perferl/src/ebin directory and refresh the page.
-Perferl will pick up all the available nodes and distribute its load evenly.
+Eg: ./run.sh 100 10
+This will simulate 100 users ramping up at 10 seconds. i.e at the end of the 10th second, the 100th user comes alive.
+By default it is configured to run tests/web_requests.perferl which just hits a couple of websites with some deliberate failures.
 
+Just do a couple of <Ctrl-c>s to stop perferl once it says test run completed.
+
+
+The results show something like this:
+Stats:[["http://localhost:3000/erl/say","149","149","149"],
+       ["http://localhost:8080/hello","32","32","32"],
+       ["http://www.erlang.org","914","914","914"],
+       ["http://images.google.co.in/imghp?ie=UTF-8&oe=UTF-8&hl=en&tab=wi&q=","868","868","868"],
+       ["http://karthiksr.blogspot.com","15744","15744","15744"],
+       ["http://www.google.com","497","497","497"]]
+
+THis means: [[<url1>, <avg time taken>, <min>, <max>],
+             [<url2>,....]
+             [<url3>,....]
+             ....]
 
 Notes:
-*The erlyweb binaries and yaws binaries are bundled along with the code to ease setting it up.
 *The code might have references to hardcoded paths as it is still work in progress.
 
 Any questions? - mailto:reachsrk@gmail.com
