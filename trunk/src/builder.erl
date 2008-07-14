@@ -57,7 +57,8 @@ buildOmioRequests() ->
 
 buildRequestsFrom(FileName) ->
 	B = builder:start(),
-	Name = string:concat("/home/srk/dev/erlang/perferl/tests/", FileName),
+%	Name = string:concat("/home/srk/dev/erlang/perferl/tests/", FileName),
+	Name = FileName,
 %	log:info("consulting: ~p~n",[Name]),
 	{ok, Terms} = file:consult(Name),
 	lists:foreach(fun(A) -> builder:add(B, A)end , Terms),
