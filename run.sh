@@ -6,5 +6,5 @@
 
 echo ""
 echo "Spawning $1 processes within $2 seconds."
-erl -eval "perferl:run($1,$2, 'deals.perferl')" -sname main -noshell -pa ./ebin
+erl -eval "perferl:run($1,$2, '/home/srk/dev/erlang/perferl/tests/deals.perferl')" -sname main -noshell -pa ./ebin
 
