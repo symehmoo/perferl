@@ -1,0 +1,1 @@
+Erlang based performance testing tool for web applications.
